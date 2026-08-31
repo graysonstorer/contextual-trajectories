@@ -1,0 +1,81 @@
+Dataset,Index,Type,Ambiguity,Modified,Stimulus,hinge,hinge_clause
+Grodner,0,S,A,0,The employees understood the contract would be changed very soon to accommodate all parties.,understood,the contract
+Grodner,1,S,A,0,The mechanic accepted the car looked in worse shape than before he worked on it.,accepted,the car
+Grodner,2,S,A,0,The old man recalled the nurse had complained to the doctor that the patient never took his medication.,recalled,the nurse
+Grodner,3,S,A,0,The traveler heard the clock had woken everybody up in the youth hostel.,heard,the clock
+Grodner,4,S,A,0,The journalist confirmed the story would be published on the front page the next day.,confirmed,the story
+Grodner,5,S,A,0,The worker maintained the walls fell down in a heap before he arrived.,maintained,the walls
+Grodner,6,S,A,0,The apprentice forgot the bicycle was standing in the garage next to the car.,forgot,the bicycle
+Grodner,7,S,A,0,The committee mentioned the issue would cause a problem at the meeting.,mentioned,the issue
+Grodner,8,S,A,0,The army found the supplies saved many lives during the long conflict.,found,the supplies
+Grodner,9,S,A,0,The umpire warned the spectators would probably get too rowdy if beer was served.,warned,the spectators
+Grodner,10,S,A,0,The coach discovered the player tried to show off all the time.,discovered,the player
+Grodner,11,S,A,0,The woman noticed the flyer had the wrong address listed on the front.,noticed,the flyer
+Grodner,12,S,A,0,The tourists saw the palace was being restored to its original condition.,saw,the palace
+Grodner,13,S,A,0,The scientist proved the theory could help build cars with better mileage.,proved,the theory
+Grodner,14,S,A,0,The soldiers remembered the town had been flattened in the bombing raid.,remembered,the town
+Grodner,15,S,A,0,The priest recognized two guests were necessary for the marriage to be legal.,recognized,two guests
+Grodner,16,S,A,0,The reporter revealed the politician received some payments from the unscrupulous millionaire.,revealed,the politician
+Grodner,17,S,A,0,The owners insured the house would never get flooded again when it rained.,insured,the house
+Grodner,18,S,A,0,The lawyer established the alibi was not sufficient to free the defendant from blame.,established,the alibi
+Grodner,19,S,A,0,The store guaranteed the television would last for ten years without failing.,guaranteed,the television
+Grodner,20,Z,A,0,Even though the band left the party went on for at least another two hours.,party,
+Grodner,21,Z,A,0,In case the executive forgot the assistant would remind him of his daily meetings and appointments.,assistant
+Grodner,22,Z,A,0,Although the maid cleaned the house was still in a state of total chaos.,house
+Grodner,23,Z,A,0,Because the class failed the exam was rewritten by the teacher so it was much easier.,exam
+Grodner,24,Z,A,0,Once the child played the piano was moved to the corner of the room.,piano
+Grodner,25,Z,A,0,As the couple danced the tango began to be played by a live orchestra.,tango
+Grodner,26,Z,A,0,After the kids cheated the teacher had them sit at separate desks and think about what they had done.,teacher
+Grodner,27,Z,A,0,After the mugger attacked the jogger was rubbing his sore leg but it didn't help.,jogger
+Grodner,28,Z,A,0,Even though the girl phoned the instructor was very upset with her for missing a lesson.,instructor
+Grodner,29,Z,A,0,Even though the janitor vacuumed the carpet was covered with dust and crumbs from the office party.,carpet
+Grodner,30,Z,A,0,Although the candidates debated the issues were overlooked by most of the media who covered the campaign.,traffic
+Grodner,31,Z,A,0,Because the train stopped the traffic was rerouted through side streets for several hours.,traffic
+Grodner,32,Z,A,0,In case the team lost the tie-breaker was scheduled for the following week at the local park.,tie-breaker
+Grodner,33,Z,A,0,After the librarian called the intern began returning books to the shelves.,intern
+Grodner,34,Z,A,0,Even though the army surrendered the territory was filled with land mines that still had to be cleared.,territory
+Grodner,35,Z,A,0,While the narrator read the story was dramatized by the troop of skilled actors.,story
+Grodner,36,Z,A,0,Before the tribe worshipped the idol was placed on a large platform.,idol
+Grodner,37,Z,A,0,In case the manager quit the company began training new staff in several departments.,company
+Grodner,38,Z,A,0,As the customer paid the waitress could see how large the tip was.,waitress
+Grodner,39,Z,A,0,While the artist painted the furniture was covered with white cloths to shield it from dust.,furniture
+Grodner,0,S,A,1,The employees who initiated the strike understood the contract would be changed very soon to accommodate all parties,contract
+Grodner,1,S,A,1,The mechanic who repaired dented vehicles accepted the car looked in worse shape than before he worked on it.,car
+Grodner,2,S,A,1,The old man who fractured his skull recalled the nurse had complained to the doctor that the patient never took his medication.,nurse
+Grodner,3,S,A,1,The traveler who stayed at the hotel heard the clock had woken everybody up in the youth hostel.,heard
+Grodner,4,S,A,1,The journalist who read the bulletin confirmed the story would be published on the front page the next day.,confirmed
+Grodner,5,S,A,1,The worker who hurt his back maintained the walls fell down in a heap before he arrived.,maintained
+Grodner,6,S,A,1,The apprentice who wanted fresh air forgot the bicycle was standing in the garage next to the car.,forgot
+Grodner,7,S,A,1,The committee which selected the location mentioned the issue would cause a problem at the meeting.,mentioned
+Grodner,8,S,A,1,The army which invaded the country found the supplies saved many lives during the long conflict.,found
+Grodner,9,S,A,1,The umpire who officiated the double-header warned the spectators would probably get too rowdy if beer was served.,warned
+Grodner,10,S,A,1,The coach who scouted new talent discovered the player tried to show off all the time.,discovered
+Grodner,11,S,A,1,The woman who proofread the ads noticed the flyer had the wrong address listed on the front.,noticed
+Grodner,12,S,A,1,The tourists who visited the kingdom saw the palace was being restored to its original condition.,saw
+Grodner,13,S,A,1,The scientist who designed large trucks proved the theory could help build cars with better mileage.,proved
+Grodner,14,S,A,1,The soldiers who witnessed the battle remembered the town had been flattened in the bombing raid.,remembered
+Grodner,15,S,A,1,The priest who performed the ceremony recognized two guests were necessary for the marriage to be legal.,recognized
+Grodner,16,S,A,1,The reporter who worked for the Globe revealed the politician received some payments from the unscrupulous millionaire.,revealed
+Grodner,17,S,A,1,The owners who purchased the estate insured the house would never get flooded again when it rained.,insured
+Grodner,18,S,A,1,The lawyer who questioned the witness established the alibi was not sufficient to free the defendant from blame.,established
+Grodner,19,S,A,1,The store which sold used appliances guaranteed the television would last for ten years without failing.,guaranteed
+Grodner,20,Z,A,1,Even though the band which played funk music left the party went on for at least another two hours.,party
+Grodner,21,Z,A,1,In case the executive who lost the organizer forgot the assistant would remind him of his daily meetings and appointments.,assistant
+Grodner,22,Z,A,1,Although the maid who wore a uniform cleaned the house was still in a state of total chaos.,house
+Grodner,23,Z,A,1,Because the class that memorized the constitution failed the exam was rewritten by the teacher so it was much easier.,exam
+Grodner,24,Z,A,1,Once the child who rehearsed the sonata played the piano was moved to the corner of the room.,piano
+Grodner,25,Z,A,1,As the couple who loved ballroom music danced the tango began to be played by a live orchestra.,tango
+Grodner,26,Z,A,1,After the kids who stole the test cheated the teacher had them sit at separate desks and think about what they had done.,teacher
+Grodner,27,Z,A,1,After the mugger who wielded a club attacked the jogger was rubbing his sore leg but it didn't help.,jogger
+Grodner,28,Z,A,1,Even though the girl who forgot her watch phoned the instructor was very upset with her for missing a lesson.,instructor
+Grodner,29,Z,A,1,Even though the janitor who cleaned the office vacuumed the carpet was covered with dust and crumbs from the office party.,carpet
+Grodner,30,Z,A,1,Although the candidates who bought many votes debated the issues were overlooked by most of the media who covered the campaign.,issues
+Grodner,31,Z,A,1,Because the train which spewed dark smoke stopped the traffic was rerouted through side streets for several hours.,traffic
+Grodner,32,Z,A,1,In case the team which fired their coach lost the tie-breaker was scheduled for the following week at the local park.,tie-breaker
+Grodner,33,Z,A,1,After the librarian who supervised the staff called the intern began returning books to the shelves.,intern
+Grodner,34,Z,A,1,Even though the army which guarded the border surrendered the territory was filled with land mines that still had to be cleared.,territory
+Grodner,35,Z,A,1,While the narrator who caught a cold read the story was dramatized by the troop of skilled actors.,story
+Grodner,36,Z,A,1,Before the tribe which pierced their lips worshipped the idol was placed on a large platform.,idol
+Grodner,37,Z,A,1,In case the manager who won several awards quit the company began training new staff in several departments.,company
+Grodner,38,Z,A,1,As the customer who hated the meal paid the waitress could see how large the tip was.,waitress
+Grodner,39,Z,A,1,While the artist who decorated the house painted the furniture was covered with white cloths to shield it from dust.,furniture
