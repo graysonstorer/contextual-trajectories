@@ -1,0 +1,201 @@
+sentence,label,type
+Run to the end of the street.,0,imperative
+Run to the car and back.,0,imperative
+Run around the block twice.,0,imperative
+Run as fast as you can.,0,imperative
+Run in place for one minute.,0,imperative
+Run toward the finish line now.,0,imperative
+Run until you reach the fence.,0,imperative
+Run across the field quickly.,0,imperative
+Run with the team to the goal.,0,imperative
+Run past the yellow house.,0,imperative
+Run to the nearest safe spot.,0,imperative
+Run back and forth here.,0,imperative
+Run before it gets too late.,0,imperative
+Run alongside me down the hill.,0,imperative
+Run straight ahead without stopping.,0,imperative
+Run to the bus stop immediately.,0,imperative
+Run to meet me at the park.,0,imperative
+Run down the hill with caution.,0,imperative
+Run to the top of the stairs.,0,imperative
+Run around the playground once.,0,imperative
+Run through the tunnel and stop.,0,imperative
+Run along this path to the river.,0,imperative
+Run up the hill with determination.,0,imperative
+Run to the corner at the end.,0,imperative
+Run home as soon as possible.,0,imperative
+Run away from the burning building.,0,imperative
+Run across the street carefully.,0,imperative
+Run to the exit as quickly as possible.,0,imperative
+Run down the corridor toward the light.,0,imperative
+Run toward the crowd over there.,0,imperative
+Run around the course without slowing.,0,imperative
+Run up the mountain trail carefully.,0,imperative
+Run to the signpost at the end.,0,imperative
+Run faster to catch the train.,0,imperative
+Run to the starting line right now.,0,imperative
+Run around the yard until you are tired.,0,imperative
+Run to the campsite to find help.,0,imperative
+Run past the school and head home.,0,imperative
+Run inside and grab the keys quickly.,0,imperative
+Run to the lab to start the test.,0,imperative
+Run across the bridge by sunset.,0,imperative
+Run into the forest until you see the cabin.,0,imperative
+Run beyond the next hill to explore.,0,imperative
+Run downtown to deliver the message.,0,imperative
+Run five laps around the track.,0,imperative
+Run out of the building immediately.,0,imperative
+Run straight down the road to the station.,0,imperative
+Run for shelter in the storm.,0,imperative
+Run until the sun sets.,0,imperative
+Run without looking back.,0,imperative
+I run every morning before work.,2,declarative
+She runs faster than anyone on the team.,1,declarative
+They run through the park on weekends.,2,declarative
+The children run around the playground happily.,2,declarative
+He runs five miles every single day.,1,declarative
+We run together as a group each Saturday.,2,declarative
+The dog runs across the yard chasing squirrels.,1,declarative
+Athletes run many miles during their training sessions.,2,declarative
+I run to clear my mind after stressful days.,2,declarative
+She runs marathons to raise money for charity.,1,declarative
+The river runs through the center of town.,1,declarative
+They run a small business from their home.,2,declarative
+He runs the company with great efficiency.,1,declarative
+We run errands on Sunday afternoons.,2,declarative
+The machine runs smoothly after being repaired.,1,declarative
+Students run to class when the bell rings.,2,declarative
+I run faster when I listen to music.,2,declarative
+She runs the meeting every Tuesday morning.,1,declarative
+The buses run every fifteen minutes downtown.,2,declarative
+They run experiments in the laboratory daily.,2,declarative
+He runs a tight ship at the office.,1,declarative
+We run out of milk almost every week.,2,declarative
+The clock runs a few minutes slow.,1,declarative
+Children run wild during summer vacation.,2,declarative
+I run into old friends at the grocery store.,2,declarative
+She runs her household very efficiently.,1,declarative
+The trains run on time in this city.,2,declarative
+They run programs for underprivileged youth.,2,declarative
+He runs circles around the competition.,1,declarative
+We run the risk of being late.,2,declarative
+The engine runs quietly after the tune-up.,1,declarative
+Deer run through the forest at dawn.,2,declarative
+I run best in cooler weather conditions.,2,declarative
+She runs three different community organizations.,1,declarative
+The pipes run underneath the basement floor.,2,declarative
+They run drills every day at practice.,2,declarative
+He runs his errands before noon each day.,1,declarative
+We run simulations to test our hypotheses.,2,declarative
+The road runs parallel to the coastline.,1,declarative
+Horses run freely on the open ranch.,2,declarative
+I run a blog about healthy living.,2,declarative
+She runs the numbers before making decisions.,1,declarative
+The trail runs along the mountain ridge.,1,declarative
+They run background checks on all applicants.,2,declarative
+He runs laps around the track after school.,1,declarative
+We run into problems when we rush things.,2,declarative
+The creek runs dry during the summer months.,1,declarative
+Scientists run tests to confirm their findings.,2,declarative
+I run late more often than I should.,2,declarative
+She runs the entire department by herself.,1,declarative
+Do you run every morning?,2,interrogative
+How fast can she run?,2,interrogative
+Why do they run so early?,2,interrogative
+Does he run marathons regularly?,2,interrogative
+Where do you usually run?,2,interrogative
+Can the children run in the park?,2,interrogative
+How far did you run yesterday?,2,interrogative
+Will they run in the race tomorrow?,2,interrogative
+Does this machine run on electricity?,2,interrogative
+How often do you run each week?,2,interrogative
+Did she run faster than her competitor?,2,interrogative
+Can we run through the plan once more?,2,interrogative
+Does the bus run on weekends?,2,interrogative
+Why did the dog run away from home?,2,interrogative
+How long have you been running this business?,1,interrogative
+Should I run to the store before dinner?,2,interrogative
+Does the river run through the valley?,2,interrogative
+Can you run the numbers again for me?,2,interrogative
+Did they run out of supplies already?,2,interrogative
+How does this program run on older computers?,2,interrogative
+Will the trains run during the holiday?,2,interrogative
+Do athletes run every single day?,2,interrogative
+Can she run the entire meeting by herself?,2,interrogative
+Why does my car run so poorly?,2,interrogative
+Did he run into any problems at work?,2,interrogative
+How many miles do you run per day?,2,interrogative
+Does the trail run along the river?,2,interrogative
+Should we run a background check first?,2,interrogative
+Can horses run faster than cars?,2,interrogative
+Did the experiment run as expected?,2,interrogative
+How long will the test run?,2,interrogative
+Do the pipes run under the house?,2,interrogative
+Why did she run for office this year?,2,interrogative
+Can I run this idea by you quickly?,2,interrogative
+Does the road run parallel to the highway?,2,interrogative
+Will you run errands with me today?,2,interrogative
+How smoothly does the engine run now?,2,interrogative
+Did we run over our budget this month?,2,interrogative
+Can they run the simulation overnight?,2,interrogative
+Why do deer run when they see people?,2,interrogative
+Does your watch run a little fast?,2,interrogative
+Should the children run laps for practice?,2,interrogative
+How well did the event run yesterday?,2,interrogative
+Did the creek run dry this summer?,2,interrogative
+Can you run home and grab my keys?,2,interrogative
+Why does time run so quickly on weekends?,2,interrogative
+Do scientists run experiments every day?,2,interrogative
+Will the show run for another season?,2,interrogative
+How many programs can this computer run at once?,2,interrogative
+Did you run into anyone we know?,2,interrogative
+Run for your life!,0,exclamatory
+"Wow, she runs so incredibly fast!",1,exclamatory
+I can't believe how far you ran today!,2,exclamatory
+What a beautiful place to run!,2,exclamatory
+He runs like the wind!,1,exclamatory
+"Run, the bus is leaving!",0,exclamatory
+I absolutely love to run in the rain!,2,exclamatory
+She runs better than any professional athlete!,1,exclamatory
+"Oh no, the dog is running away!",2,exclamatory
+What an amazing marathon you ran!,2,exclamatory
+They run circles around the competition!,2,exclamatory
+I can't believe the river runs this far!,1,exclamatory
+Run before it's too late!,0,exclamatory
+How wonderfully the engine runs now!,1,exclamatory
+She runs the company so brilliantly!,1,exclamatory
+"Quick, run to catch the train!",2,exclamatory
+The children run with such joy!,2,exclamatory
+I never knew he could run that fast!,2,exclamatory
+"Run, we're going to be late!",0,exclamatory
+What a mess they run over there!,2,exclamatory
+The machine runs perfectly after the repair!,1,exclamatory
+Run like you've never run before!,2,exclamatory
+I'm so proud of how far you ran!,2,exclamatory
+She runs that department like a pro!,1,exclamatory
+"Hurry, run to the shelter now!",2,exclamatory
+The horses run so gracefully across the field!,2,exclamatory
+I just love how smoothly this car runs!,1,exclamatory
+"Run faster, you can do it!",0,exclamatory
+What an incredible distance she ran yesterday!,2,exclamatory
+The trains here never run on time!,2,exclamatory
+"Run, the storm is coming!",0,exclamatory
+I'm amazed at how well he runs the team!,1,exclamatory
+The river runs so beautifully through the valley!,1,exclamatory
+Run with all your might!,0,exclamatory
+She runs the most successful business in town!,1,exclamatory
+"Wow, those athletes run at lightning speed!",2,exclamatory
+"Run, we only have five minutes left!",0,exclamatory
+I can't stand how slowly this computer runs!,1,exclamatory
+What a thrill it is to run on the beach!,2,exclamatory
+The clock runs way too fast these days!,1,exclamatory
+Run as fast as your legs can carry you!,0,exclamatory
+He runs the tightest ship I've ever seen!,1,exclamatory
+How exhilarating it is to run through the forest!,2,exclamatory
+"Run, the doors are about to close!",0,exclamatory
+I'm so impressed by how she runs things!,1,exclamatory
+The puppy runs around with so much energy!,1,exclamatory
+Run and never look back!,0,exclamatory
+What a fantastic race they ran!,2,exclamatory
+I hate how my nose runs in the cold!,1,exclamatory
+"Run, this is our only chance!",0,exclamatory
