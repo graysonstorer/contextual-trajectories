@@ -175,16 +175,22 @@ holdout_data = pd.read_csv('Corpus/sturt.csv')
 data = pd.read_csv('Corpus/grodner.csv') # for command line
 # data = pd.read_csv('../Corpus/modified_stimulus.csv') # for pyCharm
 sentences = data['Stimulus']
+hinges = data['hinge']
 labels = data['Ambiguity']
-if os.path.exists("grodner_garden_path_trajectories_fixed.npy"):
-    trajectories_holdout = np.load("grodner_garden_path_trajectories_fixed.npy", allow_pickle=True)
+if os.path.exists("grodner_garden_path_trajectories_hinge.npy"):
+    trajectories_holdout = np.load("grodner_garden_path_trajectories_hinge.npy", allow_pickle=True)
 else:
     trajectories_holdout = []
     for i in range(len(sentences)):
         trajectories_holdout.append(model_runs.get_trajectory_cls(text_utils.incrementize(sentences[i])))
         print(i + 1)
 
-np.save('grodner_garden_path_trajectories_fixed.npy', np.array(trajectories_holdout, dtype=object), allow_pickle=True)
+# trajectories = []
+# for i in range(len(sentences)):
+#     print(i + 1)
+#     trajectories.append(model_runs.get_trajectory_hinge(text_utils.incrementize(sentences[i]), hinges[i]))
+
+np.save('grodner_garden_path_trajectories_hinge.npy', np.array(trajectories_holdout, dtype=object), allow_pickle=True)
 paired = [(traj, label) for traj, label in zip(trajectories_holdout, labels) if len(traj) >= 2]
 trajectories_filtered, labels_filtered = list(zip(*paired))
 
@@ -204,12 +210,13 @@ x_test = vectors_between(x_test_raw)
 
 sentences_holdout = holdout_data['Stimulus']
 labels_holdout = holdout_data['Ambiguity']
-if os.path.exists("sturt_garden_path_trajectories_fixed.npy"):
-    trajectories = np.load("sturt_garden_path_trajectories_fixed.npy", allow_pickle=True)
+hinges_holdout = holdout_data['hinge']
+if os.path.exists("sturt_garden_path_trajectories_hinge_correct.npy"):
+    trajectories = np.load("sturt_garden_path_trajectories_hinge_correct.npy", allow_pickle=True)
 else:
     trajectories = []
     for i in range(len(sentences_holdout)):
-        trajectories.append(model_runs.get_trajectory_cls(text_utils.incrementize(sentences_holdout[i])))
+        trajectories.append(model_runs.get_trajectory_hinge(text_utils.incrementize(sentences_holdout[i]), hinges_holdout[i]))
         print(i + 1)
 
 # trajectories = []
@@ -217,7 +224,7 @@ else:
 #     print(i + 1)
 #     trajectories.append(model_runs.get_trajectory_cls(text_utils.incrementize(sentences[i])))
 
-np.save('sturt_garden_path_trajectories_fixed.npy', np.array(trajectories, dtype=object), allow_pickle=True)
+np.save('sturt_garden_path_trajectories_hinge_correct.npy', np.array(trajectories, dtype=object), allow_pickle=True)
 paired_holdout = [(traj, label) for traj, label in zip(trajectories, labels) if len(traj) >= 2]
 trajectories_filtered_holdout, labels_filtered_holdout = list(zip(*paired_holdout))
 
@@ -259,15 +266,23 @@ cnn = SimpleCNN(seq_len=max_len, num_classes=num_classes)
 
 def to_tensor(x, desired_length):
     padded = []
-    for traj in x:
-        traj = np.array(traj)
+    for traj_idx, traj in enumerate(x):
+        shapes = [np.asarray(step).shape for step in traj]
+        if len(set(shapes)) != 1:
+            print(f"Trajectory {traj_idx} has inconsistent shapes:")
+            print(shapes)
+            raise ValueError()
+        traj = np.stack(traj)
         pad_len = desired_length - len(traj)
         if pad_len > 0:
-            traj = np.vstack([traj, np.zeros((pad_len, traj.shape[1]))])
+            traj = np.vstack([
+                traj,
+                np.zeros((pad_len, traj.shape[1]))
+            ])
         else:
             traj = traj[:desired_length]
         padded.append(traj)
-    return torch.tensor(np.array(padded), dtype=torch.float32)
+    return torch.tensor(np.stack(padded), dtype=torch.float32)
 
 
 x_train_tensor = to_tensor(x_train, max_len).permute(0, 2, 1)
@@ -290,7 +305,7 @@ holdout_loader = DataLoader(holdout_dataset, batch_size=8, shuffle=True)
 val_accuracy_list = []
 train_accuracy_list = []
 num_runs = 10
-epochs = 80
+epochs = 30
 holdout_accuracy_list = []
 for i in range(num_runs):
     cnn = SimpleCNN(seq_len=max_len, num_classes=num_classes)

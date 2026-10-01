@@ -152,11 +152,11 @@ class SimpleCNN(nn.Module):
             # dummy = self.pool3(torch.relu(self.bn3(self.conv3(dummy))))
             fc_input_size = self.flatten(dummy).shape[1]
 
-        self.fc1 = nn.Linear(fc_input_size, 32)
-        self.drop = nn.Dropout(0.2)
-        self.fc2 = nn.Linear(32, 32)
+        self.fc1 = nn.Linear(fc_input_size, 64)
+        self.drop = nn.Dropout(0.3)
+        self.fc2 = nn.Linear(64, 64)
         self.softmax = nn.LogSoftmax(dim=1)
-        self.final = nn.Linear(32, num_classes)
+        self.final = nn.Linear(64, num_classes)
 
     def forward(self, x):
         x = self.pool1(self.relu1(self.bn1(self.conv1(x))))
@@ -176,16 +176,21 @@ data = pd.read_csv('Corpus/grodner.csv') # for command line
 # data = pd.read_csv('../Corpus/modified_stimulus.csv') # for pyCharm
 sentences = data['Stimulus']
 labels = data['Ambiguity']
-if os.path.exists("grodner_garden_path_trajectories_fixed.npy"):
-    trajectories_holdout = np.load("grodner_garden_path_trajectories_fixed.npy", allow_pickle=True)
-else:
-    trajectories_holdout = []
-    for i in range(len(sentences)):
-        trajectories_holdout.append(model_runs.get_trajectory_cls(text_utils.incrementize(sentences[i])))
-        print(i + 1)
+# if os.path.exists("grodner_garden_path_trajectories.npy"):
+#     trajectories = np.load("grodner_garden_path_trajectories.npy", allow_pickle=True)
+# else:
+trajectories = []
+for i in range(len(sentences)):
+    trajectories.append(model_runs.get_first_token_trajectory(text_utils.incrementize(sentences[i])))
+    print(i + 1)
 
-np.save('grodner_garden_path_trajectories_fixed.npy', np.array(trajectories_holdout, dtype=object), allow_pickle=True)
-paired = [(traj, label) for traj, label in zip(trajectories_holdout, labels) if len(traj) >= 2]
+# trajectories = []
+# for i in range(len(sentences)):
+#     print(i + 1)
+#     trajectories.append(model_runs.get_trajectory_cls(text_utils.incrementize(sentences[i])))
+
+np.save('grodner_garden_path_trajectories.npy', np.array(trajectories, dtype=object), allow_pickle=True)
+paired = [(traj, label) for traj, label in zip(trajectories, labels) if len(traj) >= 2]
 trajectories_filtered, labels_filtered = list(zip(*paired))
 
 
@@ -204,20 +209,20 @@ x_test = vectors_between(x_test_raw)
 
 sentences_holdout = holdout_data['Stimulus']
 labels_holdout = holdout_data['Ambiguity']
-if os.path.exists("sturt_garden_path_trajectories_fixed.npy"):
-    trajectories = np.load("sturt_garden_path_trajectories_fixed.npy", allow_pickle=True)
-else:
-    trajectories = []
-    for i in range(len(sentences_holdout)):
-        trajectories.append(model_runs.get_trajectory_cls(text_utils.incrementize(sentences_holdout[i])))
-        print(i + 1)
+# if os.path.exists("sturt_garden_path_trajectories.npy"):
+#     trajectories_holdout = np.load("sturt_garden_path_trajectories.npy", allow_pickle=True)
+# else:
+trajectories_holdout = []
+for i in range(len(sentences)):
+    trajectories_holdout.append(model_runs.get_first_token_trajectory(text_utils.incrementize(sentences[i])))
+    print(i + 1)
 
 # trajectories = []
 # for i in range(len(sentences)):
 #     print(i + 1)
 #     trajectories.append(model_runs.get_trajectory_cls(text_utils.incrementize(sentences[i])))
 
-np.save('sturt_garden_path_trajectories_fixed.npy', np.array(trajectories, dtype=object), allow_pickle=True)
+np.save('sturt_garden_path_trajectories.npy', np.array(trajectories, dtype=object), allow_pickle=True)
 paired_holdout = [(traj, label) for traj, label in zip(trajectories, labels) if len(traj) >= 2]
 trajectories_filtered_holdout, labels_filtered_holdout = list(zip(*paired_holdout))
 
@@ -289,12 +294,12 @@ holdout_loader = DataLoader(holdout_dataset, batch_size=8, shuffle=True)
 
 val_accuracy_list = []
 train_accuracy_list = []
-num_runs = 10
-epochs = 80
+num_runs = 100
+epochs = 25
 holdout_accuracy_list = []
 for i in range(num_runs):
     cnn = SimpleCNN(seq_len=max_len, num_classes=num_classes)
-    acc, loss, t, accuracies, train_accuracies = train_model(cnn, train_loader, val_loader, epochs=epochs, name="CNN", lr=2e-4)
+    acc, loss, t, accuracies, train_accuracies = train_model(cnn, train_loader, val_loader, epochs=epochs, name="CNN", lr=1e-3)
     print(acc)
     print(loss)
     print(t)
@@ -308,7 +313,7 @@ for i in range(num_runs):
 val_mean_list = []
 val_error_list = []
 
-for i in range(epochs):
+for i in range(25):
     vals = [val_accuracy_list[j][i] for j in range(num_runs)]
 
     val_mean_list.append(np.mean(vals))
@@ -317,7 +322,7 @@ for i in range(epochs):
 train_mean_list = []
 train_error_list = []
 
-for i in range(epochs):
+for i in range(25):
     vals = [train_accuracy_list[j][i] for j in range(num_runs)]
 
     train_mean_list.append(np.mean(vals))

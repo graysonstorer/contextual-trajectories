@@ -122,70 +122,51 @@ def train_model(model, train_loader, test_loader, epochs, lr, name = 'Model'):
     return final_val_acc, final_val_loss, duration, accuracies, train_accuracies
 
 
-class SimpleCNN(nn.Module):
-    # 1D convolution network
-    def __init__(self, seq_len, num_classes):
-        super(SimpleCNN, self).__init__()
+class MLP(nn.Module):
+    def __init__(self, num_classes):
+        super().__init__()
 
-        # Block 1: 1 -> 32 filters
-        self.conv1 = nn.Conv1d(in_channels=768, out_channels=256, kernel_size=5, padding=1)
-        self.bn1 = nn.BatchNorm1d(256)
-        self.relu1 = nn.ReLU()
-        self.pool1 = nn.MaxPool1d(2)
+        self.net = nn.Sequential(
+            nn.Linear(768, 64),
+            nn.ReLU(),
+            nn.Dropout(0.1),
 
-        # Block 2: 32 -> 64 filters
-        self.conv2 = nn.Conv1d(256, 128, kernel_size=3, padding=1)
-        self.bn2 = nn.BatchNorm1d(128)
-        self.relu2 = nn.ReLU()
-        self.pool2 = nn.MaxPool1d(2)
+            # nn.Linear(64, 32),
+            # nn.ReLU(),
+            # nn.Dropout(0.3),
 
-        # Block 3: 64 -> 128 filters (Added for complexity)
-        self.conv3 = nn.Conv1d(128, 64, kernel_size=1, padding=1)
-        self.bn3 = nn.BatchNorm1d(64)
-        self.relu3 = nn.ReLU()
-        self.pool3 = nn.MaxPool1d(2)
-        self.flatten = nn.Flatten()
-        with torch.no_grad():
-            dummy = torch.zeros(1, 768, seq_len)
-            dummy = self.pool1(torch.relu(self.bn1(self.conv1(dummy))))
-            dummy = self.pool2(torch.relu(self.bn2(self.conv2(dummy))))
-            # dummy = self.pool3(torch.relu(self.bn3(self.conv3(dummy))))
-            fc_input_size = self.flatten(dummy).shape[1]
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Dropout(0.3),
 
-        self.fc1 = nn.Linear(fc_input_size, 32)
-        self.drop = nn.Dropout(0.2)
-        self.fc2 = nn.Linear(32, 32)
-        self.softmax = nn.LogSoftmax(dim=1)
-        self.final = nn.Linear(32, num_classes)
+            nn.Linear(64, num_classes)
+        )
 
     def forward(self, x):
-        x = self.pool1(self.relu1(self.bn1(self.conv1(x))))
-        x = self.pool2(self.relu2(self.bn2(self.conv2(x))))
-        # x = self.pool3(self.relu3(self.bn3(self.conv3(x))))
+        return self.net(x)
 
-        x = self.flatten(x)
-        x = self.relu1(self.fc1(x))  # Reuse relu1
-        x = self.drop(x)
-        x = self.relu1(self.fc2(x))
-        x = self.drop(x)
-        x = self.softmax(self.final(x))
-        return x
 
 holdout_data = pd.read_csv('Corpus/sturt.csv')
 data = pd.read_csv('Corpus/grodner.csv') # for command line
 # data = pd.read_csv('../Corpus/modified_stimulus.csv') # for pyCharm
 sentences = data['Stimulus']
 labels = data['Ambiguity']
-if os.path.exists("grodner_garden_path_trajectories_fixed.npy"):
-    trajectories_holdout = np.load("grodner_garden_path_trajectories_fixed.npy", allow_pickle=True)
-else:
-    trajectories_holdout = []
-    for i in range(len(sentences)):
-        trajectories_holdout.append(model_runs.get_trajectory_cls(text_utils.incrementize(sentences[i])))
-        print(i + 1)
+# if os.path.exists("grodner_garden_path_trajectories.npy"):
+#     trajectories = np.load("grodner_garden_path_trajectories.npy", allow_pickle=True)
+# else:
+trajectories = []
+for i in range(len(sentences)):
+    trajectories.append(model_runs.get_last_token_trajectory(text_utils.incrementize(sentences[i])))
+    print(i + 1)
 
-np.save('grodner_garden_path_trajectories_fixed.npy', np.array(trajectories_holdout, dtype=object), allow_pickle=True)
-paired = [(traj, label) for traj, label in zip(trajectories_holdout, labels) if len(traj) >= 2]
+print("TRAJECTORIES: ", trajectories)
+# trajectories = []
+# for i in range(len(sentences)):
+#     print(i + 1)
+#     trajectories.append(model_runs.get_trajectory_cls(text_utils.incrementize(sentences[i])))
+
+np.save('grodner_garden_path_trajectories.npy', np.array(trajectories, dtype=object), allow_pickle=True)
+paired = [(traj, label) for traj, label in zip(trajectories, labels)]
 trajectories_filtered, labels_filtered = list(zip(*paired))
 
 
@@ -193,8 +174,9 @@ x_train_raw, x_test_raw, y_train, y_test = train_test_split(
     list(trajectories_filtered), list(labels_filtered), test_size=0.2, random_state=42
 )
 
-x_train = vectors_between(x_train_raw)  # list of [step0, step1], each shape (seq_len, 768)
-x_test = vectors_between(x_test_raw)
+print(x_train_raw)
+x_train = x_train_raw  # list of [step0, step1], each shape (seq_len, 768)
+x_test = x_test_raw
 
 
 
@@ -204,24 +186,24 @@ x_test = vectors_between(x_test_raw)
 
 sentences_holdout = holdout_data['Stimulus']
 labels_holdout = holdout_data['Ambiguity']
-if os.path.exists("sturt_garden_path_trajectories_fixed.npy"):
-    trajectories = np.load("sturt_garden_path_trajectories_fixed.npy", allow_pickle=True)
-else:
-    trajectories = []
-    for i in range(len(sentences_holdout)):
-        trajectories.append(model_runs.get_trajectory_cls(text_utils.incrementize(sentences_holdout[i])))
-        print(i + 1)
+# if os.path.exists("sturt_garden_path_trajectories.npy"):
+#     trajectories_holdout = np.load("sturt_garden_path_trajectories.npy", allow_pickle=True)
+# else:
+trajectories_holdout = []
+for i in range(len(sentences_holdout)):
+    trajectories_holdout.append(model_runs.get_last_token_trajectory(text_utils.incrementize(sentences_holdout[i])))
+    print(i + 1)
 
 # trajectories = []
 # for i in range(len(sentences)):
 #     print(i + 1)
 #     trajectories.append(model_runs.get_trajectory_cls(text_utils.incrementize(sentences[i])))
 
-np.save('sturt_garden_path_trajectories_fixed.npy', np.array(trajectories, dtype=object), allow_pickle=True)
-paired_holdout = [(traj, label) for traj, label in zip(trajectories, labels) if len(traj) >= 2]
+np.save('sturt_garden_path_trajectories.npy', np.array(trajectories_holdout, dtype=object), allow_pickle=True)
+paired_holdout = [(traj, label) for traj, label in zip(trajectories_holdout, labels)]
 trajectories_filtered_holdout, labels_filtered_holdout = list(zip(*paired_holdout))
 
-x_hold_out = vectors_between(trajectories_filtered_holdout)  # list of [step0, step1], each shape (seq_len, 768)
+x_hold_out = trajectories_filtered_holdout  # list of [step0, step1], each shape (seq_len, 768)
 y_hold_out = labels_filtered_holdout
 
 le = LabelEncoder()
@@ -255,7 +237,7 @@ print(f"x_train[0] type: {type(x_train[0])}, len: {len(x_train[0])}")
 print(f"x_train[0][0] shape: {np.array(x_train[0][0]).shape}")
 print(f"len(x_train): {len(x_train)}, len(y_train): {len(y_train)}")
 num_classes = len(le.classes_)
-cnn = SimpleCNN(seq_len=max_len, num_classes=num_classes)
+cnn = MLP(num_classes=num_classes)
 
 def to_tensor(x, desired_length):
     padded = []
@@ -270,13 +252,13 @@ def to_tensor(x, desired_length):
     return torch.tensor(np.array(padded), dtype=torch.float32)
 
 
-x_train_tensor = to_tensor(x_train, max_len).permute(0, 2, 1)
-x_test_tensor = to_tensor(x_test, max_len).permute(0, 2, 1)
+x_train_tensor = torch.tensor(np.array([traj[0] for traj in x_train]), dtype=torch.float32)
+x_test_tensor = torch.tensor(np.array([traj[0] for traj in x_test]), dtype=torch.float32)
 
 y_train_tensor = torch.tensor(y_train_enc, dtype=torch.long)
 y_test_tensor = torch.tensor(y_test_enc, dtype=torch.long)
 
-x_hold_out_tensor = to_tensor(x_hold_out, max_len).permute(0, 2, 1)
+x_hold_out_tensor = torch.tensor(np.array([traj[0] for traj in x_hold_out]), dtype=torch.float32)
 y_hold_out_tensor = torch.tensor(y_hold_out, dtype=torch.long)
 
 train_dataset = TensorDataset(x_train_tensor, y_train_tensor)
@@ -290,11 +272,11 @@ holdout_loader = DataLoader(holdout_dataset, batch_size=8, shuffle=True)
 val_accuracy_list = []
 train_accuracy_list = []
 num_runs = 10
-epochs = 80
+epochs = 100
 holdout_accuracy_list = []
 for i in range(num_runs):
-    cnn = SimpleCNN(seq_len=max_len, num_classes=num_classes)
-    acc, loss, t, accuracies, train_accuracies = train_model(cnn, train_loader, val_loader, epochs=epochs, name="CNN", lr=2e-4)
+    cnn = MLP(num_classes=num_classes)
+    acc, loss, t, accuracies, train_accuracies = train_model(cnn, train_loader, val_loader, epochs=epochs, name="CNN", lr=0.0006)
     print(acc)
     print(loss)
     print(t)
@@ -308,7 +290,7 @@ for i in range(num_runs):
 val_mean_list = []
 val_error_list = []
 
-for i in range(epochs):
+for i in range(100):
     vals = [val_accuracy_list[j][i] for j in range(num_runs)]
 
     val_mean_list.append(np.mean(vals))
@@ -317,7 +299,7 @@ for i in range(epochs):
 train_mean_list = []
 train_error_list = []
 
-for i in range(epochs):
+for i in range(100):
     vals = [train_accuracy_list[j][i] for j in range(num_runs)]
 
     train_mean_list.append(np.mean(vals))
@@ -343,8 +325,8 @@ plt.title(f"Train and Validation Accuracy Over Epochs (Average Over {num_runs} R
 plt.xlabel("Epochs")
 plt.ylabel("% Accuracy")
 plt.legend()
-plt.ylim(40, 102)
-plt.savefig("garden_path/saved_figs/garden_path.png")
+plt.ylim(0, 102)
+plt.savefig("garden_path/saved_figs/garden_path_last_token.png")
 plt.show()
 
 holdout_accuracy_mean = 0
